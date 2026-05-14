@@ -1,0 +1,47 @@
+on:
+  push:
+    branches: ["main"]
+    tags:
+      - "*"
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Install typst for file compiling
+        uses: typst-community/setup-typst@v5
+        with:
+          typst-version: 0.14.x
+      - name: Create output folder
+        run: mkdir compiled
+      - name: Compile report
+        run: typst compile ./docs/report/report.typ ./compiled/report.pdf --root ./
+      - name: Compile presentation
+        run: typst compile ./docs/presentation/presentation.typ ./compiled/presentation.pdf --root ./
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: CompiledPDF
+          path: "./compiled"
+  release:
+    runs-on: ubuntu-latest
+    if: github.ref_type == 'tag'
+    permissions:
+      contents: write
+    needs: compile
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Recover PDF files
+        uses: actions/download-artifact@v8
+        with:
+          name: CompiledPDF
+          path: ./CompiledPDF
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ./CompiledPDF/report.pdf
+            ./CompiledPDF/presentation.pdf
