@@ -19,11 +19,16 @@
 
     == Cuba
 
+    - Main interactables
+    - Enviroinment and lighting
+    - 3D Modelling
+
     = Ideas
 
     == Player
 
     - shake torch to recharge a bit before running out
+    - Flash tech to stun the monster
 
     == Lobby
 
