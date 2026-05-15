@@ -105,7 +105,7 @@
   )
 }
 
-#let abstract(text) = {
+#let abstract(txt) = {
 
   set page(
     margin: auto,
@@ -115,9 +115,10 @@
     ]
   )
 
-  title("Abstract")
+  title(text(size: 1.5em)[Abstract])
+  v(0.25em)
   
-  text
+  txt
   
 }
 

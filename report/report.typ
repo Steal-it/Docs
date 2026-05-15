@@ -3,7 +3,7 @@
 
 #firstPage(projectTitle)
 
-#abstract([#lorem(150)])
+#abstract([#lorem(150)]) //TODO: ABSOLUTELY CHANGE THIS!!!
 
 #indexPage()
 
@@ -11,11 +11,17 @@
   [
     = WIP
 
-    == Me
+    == Ap
 
     - torch charge logic, with batteries placed randomly in the map
 
     == Teo
+
+    - Analyzing and adapting networking (room creation/join)
+    - UI development (create/join room panel, option panel, in-game UI (?))
+    - Avatar with audio
+    - Creating main Lobby
+    - Game start system (scene change, loading screen)
 
     == Cuba
 
@@ -34,38 +40,19 @@
 
     == Lobby
 
-    - the monster walk around you, waiting to play (invisible walls block any interactin between players and the monster)
+    - the monster walk around you, waiting to play (invisible walls block any interaction between players and the monster)
+    - point shop (see @game)
+    
 
-    == Game
+    == Game <game>
 
     - avoid player to enter in the walls with the head
-
-    //   = test
-    //   == test2
-    //   #figure(
-    //     grid(
-    //       columns: (50%,50%),
-    //       [test]
-    //     ),
-    //     kind: image,
-    //     caption: "test",
-    //   )
-
-    //   A simple test@moodle
-
-    // = test2
-
-    // #figure(
-    //     grid(
-    //       columns: (50%,50%),
-    //       [test]
-    //     ),
-    //     kind: table,
-    //     caption: "test",
-    //   )
+    - introducing fake orbs/object to win without the other(s) player(s)
+    - point system: if more games are played in the same room, this could make player buy some advantages for the next game
 
   ],
   projectTitle,
 )
 
+#show heading.where(level: 1): set text(size: 1.5em)
 #bibliography("references/ref.yml", title: "References")
