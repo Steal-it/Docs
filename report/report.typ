@@ -23,6 +23,7 @@
     - Enviroinment and lighting
     - 3D Modelling
     - Blocked player vision on wall intersection
+    - Simple crouch system (To be tested)
 
     = Ideas
 
@@ -30,7 +31,6 @@
 
     - shake torch to recharge a bit before running out
     - Flash tech to stun the monster
-    - Simple crouch system
 
     == Lobby
 
