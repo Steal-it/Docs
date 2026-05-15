@@ -1,5 +1,5 @@
 #import "../lib/common.typ": projectTitle
-#import "../lib/commonReport.typ": abstract, docBody, firstPage, indexPage
+#import "../lib/commonReport.typ": abstract, docBody, firstPage, indexPage, referencePage
 
 #firstPage(projectTitle)
 
@@ -54,5 +54,4 @@
   projectTitle,
 )
 
-#show heading.where(level: 1): set text(size: 1.5em)
-#bibliography("references/ref.yml", title: "References")
+#referencePage(projectTitle, "References","../report/references/ref.yml")

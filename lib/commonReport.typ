@@ -117,7 +117,7 @@
 
   title(text(size: 1.5em)[Abstract])
   v(0.25em)
-  
+
   txt
   
 }
@@ -158,6 +158,40 @@
     )
   }
 
+}
+
+#let referencePage(title, refTitle, path) = {
+
+  set page(
+    margin: auto,
+    header: [
+
+      #grid(
+        columns: (33%, 33%, 33%),
+        align: (x, y) => {
+          if x == 0 {
+            left + horizon
+          } else if x == 1 {
+            center + horizon
+          } else {
+            right + horizon
+          }
+        },
+        [#course], [#title - Project report], [#date],
+      )
+
+      #line(length: 100%)
+      
+
+    ],
+    footer: [
+      #align(center)[#context[#counter(page).display("1 of 1", both: true,)]] \
+      #place(dx: -71pt, dy: -2pt)[#rect(height: 50%, width: 135%, stroke: none, fill: mainColor)]
+    ]
+  )
+
+  show heading.where(level: 1): set text(size: 1.5em)
+  bibliography(path, title: refTitle)
 }
 
 #let docBody(body, title) = {
