@@ -26,6 +26,14 @@
     == Cuba
 
     - Main interactables
+      - Door
+      - Drawers
+      - Buttons
+      - Lever
+      - Spawner
+      - Spawnables
+      - Ladder
+    - Distinguish far and near interaction
     - Enviroinment and lighting
     - 3D Modelling
     - Blocked player vision on wall intersection
@@ -42,7 +50,7 @@
 
     - the monster walk around you, waiting to play (invisible walls block any interaction between players and the monster)
     - point shop (see @game)
-    
+
 
     == Game <game>
 
@@ -54,4 +62,4 @@
   projectTitle,
 )
 
-#referencePage(projectTitle, "References","../report/references/ref.yml")
+#referencePage(projectTitle, "References", "../report/references/ref.yml")
