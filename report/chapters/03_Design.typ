@@ -39,3 +39,13 @@ Describe the user experience with your system. Treat this section as a user manu
 Upon opening the application, players are automatically positioned in the Local Lobby: here they cannot move, but they are presented with two main sections. The first one is a panel present on their left describing some of the main aspect of the game, including but not limited to core mechanics.
 
 At the center player find the main menu and the hand settings menu: the first one allows players to create a new room or join an existing one from a panel that will open on their right if such option is chosen. In order to limit the number of necessary interaction required by the player, all room are public and freely accessible.
+
+Upon creating a room or joining an existing one, player are teleported to the actual room lobby where also other players spawn upon joining the same room. Here players can return to the first lobby or pressing the "Ready" button, that signals other players they are ready to start the game. Notice that the button is grayed out and not interactable if there is only one person in the room.
+
+After all players currently connected to the same room pressed the "Ready" button, all of them are teleported inside the main map, where they can start collecting keys, discover secret rooms and collect useful objects to win the game.
+
+Specifically, some areas of the labyrinth are accessible only after pressing a particular button, interacting with a specific lever or by unlocking a locked door by finding and using the right key. In these areas, the player can find other keys or objects like goggles, that allow to see though the walls and therefore discover secret areas or the ghost current position, or batteries, needed to charge the torch and stun the ghost.
+
+The goal of the game is to team up and escape the maze, but the ghost can, while roaming across the map, go though walls and start chasing a player. When chasing, the ghost will no longer go through walls (with the exception of doors) and the only way for a player to not lose the game is by stunning the monster using a torch with a still active battery.
+
+Finally, batteries can make the player see better in the dark, but they are not infinite: they will discharge over time, until they will no longer have a charge and eventually explode.
