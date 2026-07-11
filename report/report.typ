@@ -16,7 +16,7 @@
 
   The #course course required the development of a project to pass the class. In this context, the members of this group decided to create an Extended Reality experience to make people have the possibility to experience an horror game in a virtualized but immersive context.
 
-  Specifically, the group, taking inspiration from the videogame #link("https://store.steampowered.com/app/1349060/It_Steals")[It Steals], created "Steal It", a multiplayer game written with Unity and the #link("https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@3.0/manual/index.html")[Unity XRI Toolkit] that was extensively tested on the Meta Quest 3.
+  Specifically, the group, taking inspiration from the game #link("https://store.steampowered.com/app/1349060/It_Steals")[It Steals], created "Steal It", a multiplayer game written with Unity and the #link("https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@3.0/manual/index.html")[Unity XRI Toolkit] that was extensively tested on the Meta Quest 3.
 
   The game put the various players inside a labyrinth inhabited by "The Monster", a mysterious bloodthirsty ghost that will chase the various players until each one of them will no longer be on this planet. Players need to team up, also using help objects like the see-through goggles, to collect all keys and escape the sad destiny that the ghost chose for them.
 
