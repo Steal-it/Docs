@@ -115,6 +115,9 @@
     ]
   )
 
+  show par: set text(12pt);
+  show link: it => underline(text(fill: linkColor)[#it])
+
   title(text(size: 1.5em)[Abstract])
   v(0.25em)
 
@@ -123,6 +126,7 @@
 }
 
 #let indexPage(imageList: true, tableList: true) = {
+
   set page(
     margin: auto,
     footer: [
@@ -133,13 +137,13 @@
 
   show outline.entry.where(level: 1): it => {
     v(12pt, weak: true)
-    text(size: 1.2em)[*#it*]
+    text(size: 1em)[*#it*]
   }
 
-  outline(depth: 4, title: text(size: 2em)[#v(0em) Index #v(0.5em)], indent: 1em)
+  outline(depth: 4, title: text(size: 1.5em)[#v(0em) Index #v(0.5em)], indent: 1em)
 
   if(imageList==true) {
-    text(size: 2em)[#v(0.5em) *Images* #v(-0.5em)]
+    text(size: 1.5em)[#v(0.5em) *Images* #v(-0.5em)]
 
     show outline: set text(weight: "thin")
     outline(
@@ -149,7 +153,7 @@
   }
 
   if(tableList==true) {
-    text(size: 2em)[#v(0.5em) *Tables* #v(-0.5em)]
+    text(size: 1.5em)[#v(0.5em) *Tables* #v(-0.5em)]
     
     show outline: set text(weight: "thin")
     outline(
@@ -190,24 +194,18 @@
     ]
   )
 
-  show heading.where(level: 1): set text(size: 1.5em)
+  show heading.where(level: 1): set text(size: 1.3em)
+  show par: set text(12pt);
   bibliography(path, title: refTitle)
 }
 
-#let docBody(body, title) = {
+#let docBody(body) = {
 
   show figure: set block(breakable: true)
   show link: it => underline(text(fill: linkColor)[#it])
   show ref: rf => underline(text(fill: mainColor)[#rf])
 
   set heading(numbering: "1.")
-
-  show heading.where(level: 1): h => {
-    set text(size: 1.5em)
-    pagebreak()
-    h
-    v(0.25em)
-  }
 
   set page(
     margin: auto,
@@ -224,7 +222,7 @@
             right + horizon
           }
         },
-        [#course], [#title - Project report], [#date],
+        [#course], [#projectTitle - Project report], [#date],
       )
 
       #line(length: 100%)
@@ -236,7 +234,16 @@
       #place(dx: -71pt, dy: -2pt)[#rect(height: 50%, width: 135%, stroke: none, fill: mainColor)]
     ]
   )
+  
+  show par: set text(12pt);
+  show heading: set text(1.3em)
+
+  show heading.where(level: 1): h => {
+    pagebreak()
+    h
+    v(0.25em)
+  }
 
   body
-
+  
 }

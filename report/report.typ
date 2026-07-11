@@ -1,65 +1,52 @@
-#import "../lib/common.typ": projectTitle
+#import "../lib/common.typ": projectTitle, course
 #import "../lib/commonReport.typ": abstract, docBody, firstPage, indexPage, referencePage
 
 #firstPage(projectTitle)
 
-#abstract([#lorem(150)]) //TODO: ABSOLUTELY CHANGE THIS!!!
+#abstract([
+  // MAX 250 words
+  /*
+  Summarize your project briefly by addressing the following points:
+  • Define the problem you aim to solve.
+  • Describe your proposed solution.
+  • Explain why your solution works well and why users would want to adopt it.
+  • Identify the key features that distinguish your work from existing solutions.
+  • Present your main evaluation findings.
+  */
+
+  The #course course required the development of a project to pass the class. In this context, the members of this group decided to create an Extended Reality experience to make people have the possibility to experience an horror game in a virtualized but immersive context.
+
+  Specifically, the group, taking inspiration from the videogame #link("https://store.steampowered.com/app/1349060/It_Steals")[It Steals], created "Steal It", a multiplayer game written with Unity and the #link("https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@3.0/manual/index.html")[Unity XRI Toolkit] that was extensively tested on the Meta Quest 3.
+
+  The game put the various players inside a labyrinth inhabited by "The Monster", a mysterious bloodthirsty ghost that will chase the various players until each one of them will no longer be on this planet. Players need to team up, also using help objects like the see-through goggles, to collect all keys and escape the sad destiny that the ghost chose for them.
+
+  Thanks to the huge number of interactable objects and the recreated horror-like environment and experience, people can really feel immerse in a legitimate horror experience, despite certainly not having the same level of realism of other games like #link("https://store.steampowered.com/app/739630/Phasmophobia/")[Phasmophobia].
+
+  Finally, the chosen end users and the various game mechanics, as well as the recreated environment, significantly distinguish "Steal it" from its source of inspiration.
+
+])
 
 #indexPage()
 
-#docBody(
-  [
-    = WIP
+#show: docBody.with()
 
-    == Ap
+/*
+Max 12 pages, 12pt, NOT COUNTING: Abstract, References, Group Contribution Statement, Code appendix
 
-    - torch charge logic, with batteries placed randomly in the map
+REPOSITORY MUST HAVE README WITH:
+- project title
+- group contribution statement
+- the abstract of this report
+- setup/usage instruction
+*/
 
-    == Teo
-
-    - Analyzing and adapting networking (room creation/join)
-    - UI development (create/join room panel, option panel, in-game UI (?))
-    - Avatar with audio
-    - Creating main Lobby
-    - Game start system (scene change, loading screen)
-
-    == Cuba
-
-    - Main interactables
-      - Door
-      - Drawers
-      - Buttons
-      - Lever
-      - Spawner
-      - Spawnables
-      - Ladder
-    - Distinguish far and near interaction
-    - Enviroinment and lighting
-    - 3D Modelling
-    - Blocked player vision on wall intersection
-    - Simple crouch system (To be tested)
-
-    = Ideas
-
-    == Player
-
-    - shake torch to recharge a bit before running out
-    - Flash tech to stun the monster
-
-    == Lobby
-
-    - the monster walk around you, waiting to play (invisible walls block any interaction between players and the monster)
-    - point shop (see @game)
-
-
-    == Game <game>
-
-    - avoid player to enter in the walls with the head
-    - introducing fake orbs/object to win without the other(s) player(s)
-    - point system: if more games are played in the same room, this could make player buy some advantages for the next game
-
-  ],
-  projectTitle,
-)
+#include "chapters/01_Introduction.typ"
+#include "chapters/02_Related-Work.typ"
+#include "chapters/03_Design.typ"
+#include "chapters/04_implementation.typ"
+#include "chapters/05_Evaluation.typ"
+#include "chapters/06_Discussion-and-conclusions.typ"
+#include "chapters/07_Group-contribution-statement.typ"
+#include "chapters/08_Code-Appendix.typ"
 
 #referencePage(projectTitle, "References", "../report/references/ref.yml")
