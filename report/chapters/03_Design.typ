@@ -13,7 +13,11 @@ Regarding the design of Steal It, a key assumption of the system is the underlin
 In order to validate the original assumption, the game needs to be played by at least two players at the same time.
 
 As for the main game, the main components of our architecture are the following:
-- *Level Manager*: the component responsible for teleporting players from the connection and settings room to the room lobby first, and from the room lobby to the main map after;
+- *Scene*: the component that contains all major scene components, with the exception of some components that needed the Network Context due to Ubiq requirements. It contains:
+  - *Level Manager*: the component responsible for teleporting players from the connection and settings room to the room lobby first, and from the room lobby to the main map after;
+  - *Local Lobby* and *Room Lobby*: the first contains the starting point of all players. Here players can choose in what hand keep the torch and if they want to create a new room or join an existing one. The second prefab is the actual room lobby, where people can select to return to the first room or send to others the message that they are ready to start the game;
+  - *XR Origin (XR Rig)*: as the name says, it is the RIG for the player. It has been modified to only allow specific type of interaction. Additionally, the component adds a vignette to reduce sickness caused by movement, and implements the *Block vision layer* to signal the player is currently inside a map object, and the *Red Screen Of Death (RSOD)* that appears upon losing the game. Lastly, it also allow the see-through effect of the goggles.
+  - *Game Over*: components with the final game canvas;
 - *Network*: the main component that host all objects that somewhat access the Ubiq network. Between the most relevant, it is important to cite:
   - *Avatar Manager*: the component is inherited directly from the Ubiq test scene and it is responsible of spawning and synchronizing all avatar connected under the same room. Additionally, it is also responsible to activate and deactivate the spectator mode, a special player game mode in which the player can freely move around the map since it lost the game;
   - *Name Manager*, *Voip Manager* and *Ubiq Avatar Input*: three components inherited directly by the Ubiq test scene and responsible for the player name assignment, voice transmission and input management respectively;
@@ -23,8 +27,6 @@ As for the main game, the main components of our architecture are the following:
     - *Configuration Manager*: contains the possible positions of keys in the map, as well as the player and ghost spawn points;
     - *Monster Pack*: the complete logic of the ghost, from movement to state management;
     - *Interactables* and *Visuals*: list of interactable objects and wall of the map, respectively;
-  - *Local Lobby* and *Room Lobby*: the first contains the starting point of all players. Here players can choose in what hand keep the torch and if they want to create a new room or join an existing one. The second prefab is the actual room lobby, where people can select to return to the first room or send to others the message that they are ready to start the game;
-  - *XR Origin (XR Rig)*: as the name says, it is the RIG for the player. It has been modified to only allow specific type of interaction. Additionally, the component adds a vignette to reduce sickness caused by movement, and implements the *Block vision layer* to signal the player is currently inside a map object, and the *Red Screen Of Death (RSOD)* that appears upon losing the game. Lastly, it also allow the see-through effect of the goggles.
 
 Every interactable object present in the Interactables object is equipped with two scripts `NetworkInteractable` and `NetworkMovement`: the way they work will be explained in @ch4.
 
@@ -38,7 +40,9 @@ Describe the user experience with your system. Treat this section as a user manu
 
 Upon opening the application, players are automatically positioned in the Local Lobby: here they cannot move, but they are presented with two main sections. The first one is a panel present on their left describing some of the main aspect of the game, including but not limited to core mechanics.
 
-At the center player find the main menu and the hand settings menu: the first one allows players to create a new room or join an existing one from a panel that will open on their right if such option is chosen. In order to limit the number of necessary interaction required by the player, all room are public and freely accessible.
+/*At the center player find the main menu and the hand settings menu: the first one allows players to create a new room or join an existing one from a panel that will open on their right if such option is chosen. In order to limit the number of necessary interaction required by the player, all room are public and freely accessible.*/
+
+At the center player find the main menu that allows players to create a new room or join an existing one from a panel that will open on their right if such option is chosen.
 
 Upon creating a room or joining an existing one, player are teleported to the actual room lobby where also other players spawn upon joining the same room. Here players can return to the first lobby or pressing the "Ready" button, that signals other players they are ready to start the game. Notice that the button is grayed out and not interactable if there is only one person in the room.
 

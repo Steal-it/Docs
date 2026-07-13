@@ -204,6 +204,10 @@
   show figure: set block(breakable: true)
   show link: it => underline(text(fill: linkColor)[#it])
   show ref: rf => underline(text(fill: mainColor)[#rf])
+  show figure.where(kind: image): f => {
+    rect()[#f.body]
+    text()[#f.caption]
+  }
 
   set heading(numbering: "1.")
 

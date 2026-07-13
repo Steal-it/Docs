@@ -11,6 +11,52 @@ Describe your implementation by addressing the following:
 You may reference code snippets from the Appendix throughout this section.
 */
 
+== Game startup process
+
+When a player connects to a room, it is prompted with two buttons. A particular behavior that needs to be described is the "Ready" button.
+
+First of all, when the player joins a new room, `MessageHandler` is notified since it is subscribed to a particular event of Ubiq that is fired when the user connects to a new room. After a 100 ms delay that allows Ubiq to update the internal peer list, `MessageHandler` checks if the room is empty, if not, it sends a message to recover how many people in the room already pressed the button, which is memorized in a counter into each message handler. The function snippet has been reported on @onjoinedroomhandler.
+
+Every peer already in the room proceed to answer with the internal counter and the requester update its current ready counter with the higher value.
+
+With the initial process finished, the user can signal other users when it is ready by pressing the ready button, which cause all currently connected peers under the same room to increment the ready counter by one.
+
+When the ready counter matches the number of peers in the room an event, listened by `LevelManager`, is fired, and this cause all players currently in the room to be moved to the actual level map.
+
+== Out Of Bounds (OOB) management
+
+== Avatar spawning
+
+== Map Configuration
+
+== RIG optimizations and possible interactions
+
+== Object interaction and synchronization
+
 Every interactable object present in the Interactables object is equipped with two scripts `NetworkInteractable` and `NetworkMovement`. The first one detects when the object is interacted with and set the second script to start sending messages containing information about the position of the object. When transmitting, two variables are set by the sender and all receiving party, these being `AmIOwner` and `AmISender`. When the transmission start, both variables are set at true in the sender and false in the receiving party (that being the replica of the same object in the other players application instance). When the object is owned by another party, this means that object is currently being interacted by another party and others should not interfere: therefore, the `XRBaseInteractable` is deactivated in the receiving parties. When released, two situation can happen:
 - the object is not stationary, meaning it is not in a fixed position: in this case, the sender set `AmIOwner` to false but keeps `AmISender` to true. This causes the sender to keep sending information about object position to the other peers, while allowing the other instances to re-activate the `XRBaseInteractable`, therefore allowing other players to becoming the "owner" of such object. Becoming the new owner automatically makes the previous owner to not be the sender anymore;
 - the object is stationary, meaning it is always in the same position: an example could be a button for example, which movement has to be transmitted only when a player is interacting with it, but not after it finished the interaction. In such case, interrupting the interaction cause both variables, `AmIOwner` and `AmISender`, to became false.
+The handling function has been reported in @processmessage.
+
+Similarly to the situation just described, it is important to also dedicate a few words regarding the animations and particles: appropriate scripts have been created to send specific messages across the Ubiq network to reproduce audio, effects and other elements in a synchronized manner.
+
+== Spectator mode
+
+When a player die because of the ghost, it enters a special mode called "Spectator Mode". This game modality disable the ability of the player to interact with interactable objects and makes disable the avatar in both the local and all remotes instances of the game. Collision are also disabled, therefore, the player is free to roam all the map, including out of bounds areas since the collision detection has been disabled as well.
+
+The way the functionality works starts from the ghost: this has a reference to Avatar Manager, specifically its script called `SpectatorModeManager`, which has a public method, `ChangeSpectatorModeByPlayerUUID(playerUUID,sendToOtherPeers)` that is in charge of disabling the spectator mode on the Local Avatar and notify remote peers. To send messages, the `MessageHandler` component is used. Additionally, `SpectatorModeManager` subscribes to an event of `Message Handler` to be notified when a spectator mode needs to be activated. In this particular situation, the manager invokes another event to notify every avatar spawned under the avatar manager.
+
+In fact, every avatar is equipped with another script, `SpectatorMode`, that subscribes to the spectator mode manager, check for the avatar UUID (which can be recovered from the object name) and, if a match is found between the event UUID and the avatar UUID, the modality is activated after playing a special sound.
+
+Similarly, the Red Screen Of Death (the red screen characteristic of the spectator mode, abbreviated in RSOD), also subscribes to the same event of the spectator mode manager to activate the red screen on the Local Avatar if the player that lost the game is the one of the particular device that received the message.
+
+Since disabling the avatar too early would cause the audio to not play, a routine is used, see @handlespectatorchange for more information, which contains the function called when the event of spectator mode activation is fired from the spectator mode manager.
+
+Finally, `SpectatorModeManager` also enable the game over final screen, both in case of win or lost.
+
+== The monster
+
+The ghost in another essential component of the game. Specifically, the ghost is controlled only by one entity, the player that created the room, and such decision is propagated to the other entities upon game start.
+
+// TODO write election process
+// TODO describe ghost in depth

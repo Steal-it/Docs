@@ -51,13 +51,13 @@ While all members contributed in equal manner to level and game design choices, 
       - Monster:
         - Help with stun logic
       - Networking:
-        - Hand change selection logic and synchronization
+        - Hand change selection logic and synchronization (later removed)
 
     ],
     [*#authors.mt.name #authors.mt.surname (#authors.mt.stid)*],
     [
       - Initial UI interface for game join menu
-      - Hand selection UI interface
+      - Hand selection UI interface (later removed)
       - Creation of testing map
       - Spectator mode Red Screen Of Death
       - Networking:
