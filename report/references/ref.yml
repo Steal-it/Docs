@@ -3,3 +3,15 @@ moodle:
   title: Moodle of the Immersive Technologies course at UniTn
   author: Alberto Boem
   url: https://didatticaonline.unitn.it/dol/course/view.php?id=42673
+
+study:
+  type: Article
+  title: The use of virtual reality in environment experiences and the importance of realism
+  author: ["M. Newman", "B. Gatersleben", "K. J. Wyles", "E. Ratcliffe"]
+  url: https://pearl.plymouth.ac.uk/cgi/viewcontent.cgi?article=1515&context=psy-research
+
+study2:
+  type: Article
+  title: "Decoding Fear: Exploring User Experiences in Virtual Reality Horror Games"
+  author: ["He Zhang", "Xinyang Li", "Christine Qiu", "Xinyi Fu"]
+  url: "https://arxiv.org/pdf/2312.15582v1"
