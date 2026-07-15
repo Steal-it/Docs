@@ -20,6 +20,8 @@ Theoretically speaking, the group wanted to test whether it is true that immersi
 
 Another aspect the group wanted to analyze is whether a mixed reality experience could help led people to team up during scary situation or if they tend to break the group in order to win the game by themselves.
 
+The team hypothesis is that a game should not only be only about realism, but presence could also be accomplish with less realism and more emotions.
+
 As for the group personal experience, horror games can became really immersive and abstract the player from the real world even without the usage of an head-mounted display, our goal was to bring that experience to the extended reality world and see if the same level of involvement could be achieved in the virtual world even with a smaller amount of realism but with an higher amount of interaction.
 
 A possible positive answer to the just mentioned proposition could have several consequences in the digital game development, where, specifically regarding horror games, realism was the one of the key factor: this project can reveal that this could at least dependent from the targeted platform.

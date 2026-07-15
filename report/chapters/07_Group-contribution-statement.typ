@@ -51,13 +51,13 @@ While all members contributed in equal manner to level and game design choices, 
       - Monster:
         - Help with stun logic
       - Networking:
-        - Hand change selection logic and synchronization (later removed)
+        - Hand change selection logic and synchronization
 
     ],
     [*#authors.mt.name #authors.mt.surname (#authors.mt.stid)*],
     [
       - Initial UI interface for game join menu
-      - Hand selection UI interface (later removed)
+      - Hand selection UI interface 
       - Creation of testing map
       - Spectator mode Red Screen Of Death
       - Networking:
@@ -66,6 +66,7 @@ While all members contributed in equal manner to level and game design choices, 
         - Game "Ready" system (start the game only when all people in the room are ready, including ready counter recovery upon room join)
         - Level managing (initial study for avatar transposition when joining a level or a different room)
         - Spectator mode activation/deactivation
+        - Increased reliability of avatar movement/animation interaction
     ],
   )
 )
