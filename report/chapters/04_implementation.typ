@@ -66,7 +66,18 @@ Finally, `SpectatorModeManager` also enable the game over final screen, both in 
 
 == The monster
 
-The ghost in another essential component of the game. Specifically, the ghost is controlled only by one entity, the player that created the room, and such decision is propagated to the other entities upon game start.
+#let caas = box["client-as-a-server"]
 
-// TODO write election process
-// TODO describe ghost in depth
+The ghost in another essential component of the game. Specifically, it is controlled only by one client, the player that created the room, and such decision is propagated to the other clients upon game start. In case such client disconnected from its own room, it elects the new #caas if any, and just before leaving the room it broadcasts the decision.
+
+The *NavMesh* package is adopted to let the monster move by itself. The #caas activates a NavMesh agent with the logic of the ghost, and uses two NavMesh surfaces (needed for different states, explained in the following section). Other clients, instead, simply run the "common" part of the ghost, namely the 3D model, the sound effects, the animations, etc.
+
+=== State machine
+
+The monster is implemented via the state machine design pattern. Indeed, it behaves in many different ways depending on the circumstances, hence the following states are defined:
+
+- *wander* - the ghost sets a random destination, follows a path to reach it, selects a new random destination and repeats. In the meanwhile, it constantly checks if it sees any player within its field of view, and if so, it targets such player and changes state;
+
+- *chase* - the targeted player is the unique destination of the ghost. The monster starts at a slow speed and constantly increase it until a maximum velocity, that is higher than the one of the players;
+
+- *murder* - a player is killed once the monster reaches it.
