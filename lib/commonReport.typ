@@ -1,19 +1,18 @@
-#import "common.typ": linkColor, course, university, authors, academicYear, projectTitle, mainColor, date
+#import "common.typ": academicYear, authors, course, date, linkColor, mainColor, projectTitle, university
 
 #let firstPage(title) = {
-  
   set page(margin: 0pt)
   set document(
     title: [#title - #course - #university],
     author: (
-            authors.ajsm.name+" "+authors.ajsm.surname+" - Student Id "+authors.ajsm.stid,
-            authors.ap.name+" "+authors.ap.surname+" - Student Id "+authors.ap.stid,
-            authors.mt.name+" "+authors.mt.surname+" - Student Id "+authors.mt.stid
-            ),
-    description: [Project report for the #course course at #university]
+      authors.ajsm.name + " " + authors.ajsm.surname + " - Student Id " + authors.ajsm.stid,
+      authors.ap.name + " " + authors.ap.surname + " - Student Id " + authors.ap.stid,
+      authors.mt.name + " " + authors.mt.surname + " - Student Id " + authors.mt.stid,
+    ),
+    description: [Project report for the #course course at #university],
   )
 
-  align(top+center)[
+  align(top + center)[
 
     #place(dx: 0pt, dy: 0pt)[
       #rect(width: 110%, height: 6em, fill: mainColor.lighten(40%))
@@ -21,15 +20,15 @@
 
     #polygon(
       fill: mainColor,
-      (0%,0%),
-      (100%,0%),
-      (50%,6em)
+      (0%, 0%),
+      (100%, 0%),
+      (50%, 6em),
     )
-    
+
     #v(3em)
 
     #grid(
-      columns: (80%),
+      columns: 80%,
       gutter: 0.5em,
       [
         #text(size: 2.1em, weight: "extrabold")[Project Report for #course Course]
@@ -43,54 +42,54 @@
         #text(size: 2em, weight: "bold")[#title]
       ],
     )
-    
+
   ]
 
   v(4.5em)
-  align(center)[#line(length: 35%, stroke: 2pt+mainColor)]
+  align(center)[#line(length: 35%, stroke: 2pt + mainColor)]
   v(4.5em)
 
   align(center)[
     #text(size: 1.5em, weight: "bold")[Authors:]
     #grid(
-      columns: (40%,40%),
-      align: center+horizon,
+      columns: (40%, 40%),
+      align: center + horizon,
       gutter: 3em,
       [
         #authors.ap.name #authors.ap.surname \
-        #link("mailto:"+authors.ap.email)[#authors.ap.email] \
+        #link("mailto:" + authors.ap.email)[#authors.ap.email] \
         Student ID: #authors.ap.stid
       ],
       [
         #authors.mt.name #authors.mt.surname \
-        #link("mailto:"+authors.mt.email)[#authors.mt.email] \
+        #link("mailto:" + authors.mt.email)[#authors.mt.email] \
         Student ID: #authors.mt.stid
       ],
       grid.cell(colspan: 2)[
         #authors.ajsm.name #authors.ajsm.surname \
-        #link("mailto:"+authors.ajsm.email)[#authors.ajsm.email] \
+        #link("mailto:" + authors.ajsm.email)[#authors.ajsm.email] \
         Student ID: #authors.ajsm.stid
-      ]
+      ],
     )
   ]
 
-  place(dx: 90pt, dy:-170pt)[
+  place(dx: 90pt, dy: -170pt)[
     #polygon(
       fill: mainColor.lighten(40%),
-      (100%,0%),
-      (100%,100%),
-      (100%,100%),
-      (0%,100%),
+      (100%, 0%),
+      (100%, 100%),
+      (100%, 100%),
+      (0%, 100%),
     )
   ]
 
   place(dx: 100pt, dy: -70pt)[
     #polygon(
       fill: mainColor,
-      (100%,0%),
-      (100%,0%),
-      (100%,100%),
-      (0%,100%),
+      (100%, 0%),
+      (100%, 0%),
+      (100%, 100%),
+      (0%, 100%),
     )
   ]
 
@@ -99,40 +98,38 @@
   set page(
     margin: auto,
     footer: [
-      #align(center)[#context[#counter(page).display("1 of 1", both: true,)]] \
+      #align(center)[#context [#counter(page).display("1 of 1", both: true)]] \
       #place(dx: -71pt, dy: -2pt)[#rect(height: 50%, width: 135%, stroke: none, fill: mainColor)]
-    ]
+    ],
   )
 }
 
 #let abstract(txt) = {
-
   set page(
     margin: auto,
     footer: [
-      #align(center)[#context[#counter(page).display("1 of 1", both: true,)]] \
+      #align(center)[#context [#counter(page).display("1 of 1", both: true)]] \
       #place(dx: -71pt, dy: -2pt)[#rect(height: 50%, width: 135%, stroke: none, fill: mainColor)]
-    ]
+    ],
   )
 
-  show par: set text(12pt);
+  show par: set text(12pt)
   show link: it => underline(text(fill: linkColor)[#it])
+  set par(justify: true)
 
   title(text(size: 1.5em)[Abstract])
   v(0.25em)
 
   txt
-  
 }
 
 #let indexPage(imageList: true, tableList: true) = {
-
   set page(
     margin: auto,
     footer: [
-      #align(center)[#context[#counter(page).display("1 of 1", both: true,)]] \
+      #align(center)[#context [#counter(page).display("1 of 1", both: true)]] \
       #place(dx: -71pt, dy: -2pt)[#rect(height: 50%, width: 135%, stroke: none, fill: mainColor)]
-    ]
+    ],
   )
 
   show outline.entry.where(level: 1): it => {
@@ -140,9 +137,9 @@
     text(size: 1em)[*#it*]
   }
 
-  outline(depth: 4, title: text(size: 1.5em)[#v(0em) Index #v(0.5em)], indent: 1em)
+  outline(title: text(size: 1.5em)[#v(0em) Index #v(0.5em)])
 
-  if(imageList==true) {
+  if (imageList == true) {
     text(size: 1.5em)[#v(0.5em) *Images* #v(-0.5em)]
 
     show outline: set text(weight: "thin")
@@ -152,20 +149,18 @@
     )
   }
 
-  if(tableList==true) {
+  if (tableList == true) {
     text(size: 1.5em)[#v(0.5em) *Tables* #v(-0.5em)]
-    
+
     show outline: set text(weight: "thin")
     outline(
       title: [],
       target: figure.where(kind: table),
     )
   }
-
 }
 
 #let referencePage(title, refTitle, path) = {
-
   set page(
     margin: auto,
     header: [
@@ -185,22 +180,21 @@
       )
 
       #line(length: 100%)
-      
+
 
     ],
     footer: [
-      #align(center)[#context[#counter(page).display("1 of 1", both: true,)]] \
+      #align(center)[#context [#counter(page).display("1 of 1", both: true)]] \
       #place(dx: -71pt, dy: -2pt)[#rect(height: 50%, width: 135%, stroke: none, fill: mainColor)]
-    ]
+    ],
   )
 
   show heading.where(level: 1): set text(size: 1.3em)
-  show par: set text(12pt);
+  show par: set text(12pt)
   bibliography(path, title: refTitle)
 }
 
 #let docBody(body) = {
-
   show figure: set block(breakable: true)
   show link: it => underline(text(fill: linkColor)[#it])
   show ref: rf => underline(text(fill: mainColor)[#rf])
@@ -230,17 +224,18 @@
       )
 
       #line(length: 100%)
-      
+
 
     ],
     footer: [
-      #align(center)[#context[#counter(page).display("1 of 1", both: true,)]] \
+      #align(center)[#context [#counter(page).display("1 of 1", both: true)]] \
       #place(dx: -71pt, dy: -2pt)[#rect(height: 50%, width: 135%, stroke: none, fill: mainColor)]
-    ]
+    ],
   )
-  
-  show par: set text(12pt);
+
+  show par: set text(12pt)
   show heading: set text(1.3em)
+  set par(justify: true)
 
   show heading.where(level: 1): h => {
     pagebreak()
@@ -249,5 +244,4 @@
   }
 
   body
-  
 }

@@ -23,13 +23,23 @@ With the initial process finished, the user can signal other users when it is re
 
 When the ready counter matches the number of peers in the room an event, listened by `LevelManager`, is fired, and this cause all players currently in the room to be moved to the actual level map.
 
-== Out Of Bounds (OOB) management
-
 == Avatar spawning
 
 == Map Configuration
 
+In the context of a demo application, the lobbies and the actual game live in the same scene, avoiding issues that derive by a scene switch. For this reason, since the map remains the same at each gameplay, we implemented different configurations not to let the players to memorize the obstacles and targets. In each `MapConfiguration`, the position and rotation of the following assets are specified.
+
+- *players spawn point* - for now, an entry room is set up, so the spawn point must be always there, but in future it will be possible to let the players spawn in different parts of the map;
+
+- *monster spawn point* - where the monster initially spawns;
+
+- *keys* - the position of the keys used to unlock the final door and escape the maze.
+
+When all players are ready to play, a random configuration is selected and loaded. To avoid that one client chooses the setup and notifies it, every client locally computes the seed of the `System.Random` class according to the UUIDs of all players: the list of peers is ordered by UUID, the first one is selected, and the hashed UUID is used as the seed to select a random configuration.
+
 == RIG optimizations and possible interactions
+
+=== Out Of Bounds (OOB) management
 
 == Object interaction and synchronization
 
