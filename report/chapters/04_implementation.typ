@@ -15,13 +15,9 @@ You may reference code snippets from the Appendix throughout this section.
 
 When a player connects to a room, it is prompted with two buttons. A particular behavior that needs to be described is the "Ready" button.
 
-First of all, when the player joins a new room, `MessageHandler` is notified since it is subscribed to a particular event of Ubiq that is fired when the user connects to a new room. After a 100 ms delay that allows Ubiq to update the internal peer list, `MessageHandler` checks if the room is empty, if not, it sends a message to recover how many people in the room already pressed the button, which is memorized in a counter into each message handler. The function snippet has been reported on @onjoinedroomhandler.
+First of all, when the player joins a new room, `MessageHandler` is notified since it is subscribed to a particular event of Ubiq that is fired when the user connects to a new room. After a 100 ms delay that allows Ubiq to update the internal peer list, `MessageHandler` checks if the room is empty, if not, it sends a message to recover how many people in the room already pressed the button, which is memorized in a counter into each message handler. The function snippet has been reported on @onjoinedroomhandler. Every peer already in the room proceed to answer with the internal counter and the requester update its current ready counter with the higher value.
 
-Every peer already in the room proceed to answer with the internal counter and the requester update its current ready counter with the higher value.
-
-With the initial process finished, the user can signal other users when it is ready by pressing the ready button, which cause all currently connected peers under the same room to increment the ready counter by one.
-
-When the ready counter matches the number of peers in the room an event, listened by `LevelManager`, is fired, and this cause all players currently in the room to be moved to the actual level map.
+With the initial process finished, the user can signal other users when it is ready by pressing the ready button, which cause all currently connected peers under the same room to increment the ready counter by one. When the ready counter matches the number of peers in the room an event, listened by `LevelManager`, is fired, and this cause all players currently in the room to be moved to the actual level map.
 
 == Avatar spawning
 
@@ -84,4 +80,18 @@ The monster is implemented via the state machine design pattern. Indeed, it beha
 
 - *chase* - the targeted player is the unique destination of the ghost. The monster starts at a slow speed and constantly increase it until a maximum velocity, that is higher than the one of the players;
 
-- *murder* - a player is killed once the monster reaches it.
+- *stunned* - the monster sets a random destination far away from the players, and during the path it does not target anyone. This is used to let the players have a bit of space to play, and it is implemented in two different substates that behaves in the same way, but they are logically separated:
+
+  - *murder* - the monster reached the targeted player and killed it;
+
+  - *flashed* - the monster is flashed by the players with the lanterns.
+
+#figure(
+  image(
+    "../../assets/MonsterStateMachine.png",
+    width: 60%,
+  ),
+  caption: [Monster state machine diagram],
+)
+
+During the wander and stunned states, the ghost can pass trhough walls, while in the chase state it cannot. We tought that if the monster always ignored the walls, escaping or flashing it would become much more difficult. Therefore, two NavMesh surfaces alternate according to the current state of the monster.

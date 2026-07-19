@@ -11,32 +11,34 @@ While all members contributed in equal manner to level and game design choices, 
 #figure(
   caption: "Group contributions",
   table(
-    columns: (45%,55%),
-    align: (x,y) => {
-      if(y==0) {
-        center+horizon
+    columns: (45%, 55%),
+    align: (x, y) => {
+      if (y == 0) {
+        center + horizon
       } else {
-        left+horizon
+        left + horizon
       }
     },
 
-    table.header([*Member*],[*Contributions*]),
+    table.header([*Member*], [*Contributions*]),
     [*#authors.ap.name #authors.ap.surname (#authors.ap.stid)*],
     [
       - Initial RIG changes
       - Initial torch design and usage logic development
       - Initial battery design and usage logic development
       - Map customization management on scene to create various levels using the same map
-      - Game end management
+      - Game over management
       - Contribution to final map developing
-      - Monster:
+      - Monster
         - Monster design
-        - Monster logic (wander, chase, stun)
+        - Monster logic (state machine pattern)
       - Networking
-        - Monster networking (client as server election, movement and event synchronization)
+        - Monster networking ("client-as-a-server" election, movement and event synchronization)
         - Refactoring of existing scripts and functionality abstraction
         - Player spawning system
+      - Sound effects
     ],
+
     [*#authors.ajsm.name #authors.ajsm.surname (#authors.ajsm.stid)*],
     [
       - Player vision blocker when intersection with objects occur
@@ -51,20 +53,17 @@ While all members contributed in equal manner to level and game design choices, 
       - Creation of the final map
       - Refactoring of avatar and RIG system for hand change management
       - Goggles transparent vision
-      - Monster:
-        - Help with stun logic
-        - RIG
-      - Networking:
+      - Networking
         - Hand change selection logic and synchronization
-
     ],
+
     [*#authors.mt.name #authors.mt.surname (#authors.mt.stid)*],
     [
       - Initial UI interface for game join menu
-      - Hand selection UI interface 
+      - Hand selection UI interface
       - Creation of testing map
       - Spectator mode Red Screen Of Death
-      - Networking:
+      - Networking
         - Interactable object management and synchronization between players (position sending/receiving, owner/sender system)
         - Room creation and management (public room creation upon button pressing)
         - Game "Ready" system (start the game only when all people in the room are ready, including ready counter recovery upon room join)
@@ -72,5 +71,5 @@ While all members contributed in equal manner to level and game design choices, 
         - Spectator mode activation/deactivation
         - Increased reliability of avatar movement/animation interaction and transmission
     ],
-  )
+  ),
 )

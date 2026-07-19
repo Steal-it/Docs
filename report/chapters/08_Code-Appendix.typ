@@ -17,13 +17,17 @@
         if (context.Scene != null) {
             context.SendJson(new RecoverCurrentCounterRequestMessage());
         } else {
-            Debug.LogWarning("Network context is not available, retry send in one second");
-            await Task.Delay(1000); // Wait a second before sending a message: this allow to be sure about a complete connection between a new peer and existing peers.
+            Debug.LogWarning(
+                "Network context is not available, retry send in one second"
+            );
+            // Wait a second before sending a message: this allow to be sure about
+            // a complete connection between a new peer and existing peers.
+            await Task.Delay(1000);
             OnJoinedRoomHandler(_room);
         }
     }
     ```
-  ]
+  ],
 )<onjoinedroomhandler>
 
 #figure(
@@ -35,24 +39,27 @@
         MovementMessage message = _message.FromJson<MovementMessage>();
 
         if (interactable != null) {
-            // If an interactable is present and owner is set a true the interactable has to be disabled and viceversa
+            // If an interactable is present and owner is set to true,
+            // the interactable has to be disabled and viceversa
             interactable.enabled = !message.IsOwned;
         }
 
         Pose pose = Transforms.ToWorld(message.Pose, Context.Scene.transform);
         Transform.SetPositionAndRotation(pose.position, pose.rotation);
 
-        if (TryGetComponent(out Rigidbody rb)) { // disable gravity if rigidbody is present
+        if (TryGetComponent(out Rigidbody rb)) {
+            // Disable gravity if rigidbody is present
             rb.useGravity = !message.IsOwned;
         }
 
         if (message.IsOwned) {
-            // If object is taken by another, the current player is no longer the amISender
+            // If object is taken by another,
+            // the current player is no longer the amISender
             AmISender = false;
         }
     }
     ```
-  ]
+  ],
 )<processmessage>
 
 #figure(
@@ -62,17 +69,24 @@
     ```cs
     private IEnumerator HandleSpectatorChange(string _receivedPlayerUUID) {
         if (NetworkReferenceManager.Instance.RoomClient.Me.uuid == _receivedPlayerUUID) {
-            // If a player lost play the lost sound. Since this function can be called both when spectator mode is to be activated (enable = false -> true) and deactivated (enable = true -> false), the sound has to play only when the spectator mode is being activated (enable = false -> true)
+            // If a player lost play the lost sound. Since this function can be called
+            // both when spectator mode has to be activated (enable = false -> true)
+            // and deactivated (enable = true -> false), the sound has to play only
+            // when the spectator mode is being activated (enable = false -> true)
 
             lostAudioSource.Play();
 
             yield return new WaitUntil(() => !lostAudioSource.isPlaying);
         }
 
-        if (_receivedPlayerUUID == playerUUID || (playerUUID == "Local Avatar" && _receivedPlayerUUID == NetworkReferenceManager.Instance.RoomClient.Me.uuid)) {
+        if (
+            _receivedPlayerUUID == playerUUID ||
+            (playerUUID == "Local Avatar" &&
+            _receivedPlayerUUID == NetworkReferenceManager.Instance.RoomClient.Me.uuid)
+        ) {
             UpdateVisibility();
         }
     }
     ```
-  ]
+  ],
 )<handlespectatorchange>
