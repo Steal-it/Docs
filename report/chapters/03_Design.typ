@@ -34,9 +34,6 @@ As for the main game, the main components of our architecture are the following:
 
     - *Name Manager*, *Voip Manager* and *Ubiq Avatar Input* - three components inherited directly by the Ubiq test scene and responsible for the player name assignment, voice transmission and input management respectively;
 
-    // TODO: huh?
-    - *Spawner* - component that manages player spawn in such a way that two players cannot spawn in the same position;
-
     - *Message Handler* - component that handles the majority of messages exchange under the same room. Some examples are the message that signals other peers a player is ready, the one that signals that all players are ready, the messages responsible for electing the client that will manage the ghost, the message that signals that a player escaped the maze and the message that activate the spectator mode for a player;
 
     - *Map* - made of several components that together creates the playable level. Between them, the most important are the following;
@@ -58,12 +55,12 @@ Describe the user experience with your system. Treat this section as a user manu
 */
 
 Upon opening the application, players are automatically positioned in the Local Lobby: here they cannot move, but they are presented with two main sections. The first one is a panel present on their left describing some of the main aspect of the game, including but not limited to core mechanics.
-/*At the center player find the main menu and the hand settings menu: the first one allows players to create a new room or join an existing one from a panel that will open on their right if such option is chosen. In order to limit the number of necessary interaction required by the player, all room are public and freely accessible.*/
-At the center player finds the main menu that allows to create a new room or join an existing one from a panel that will open on their right if such option is chosen.
+At the center player find the main menu and the hand settings menu: the first one allows players to create a new room or join an existing one from a panel that will open on their right if such option is chosen. In order to limit the number of necessary interaction required by the player, all room are public and freely accessible.
+/*At the center player finds the main menu that allows to create a new room or join an existing one from a panel that will open on their right if such option is chosen.*/
 
 Upon creating a room or joining an existing one, players are teleported to the actual room lobby where also other players spawn upon joining the same room. Here players can return to the first lobby or pressing the "Ready" button, that signals other players they are ready to start the game. Notice that the button is grayed out and not interactable if there is only one person in the room.
 
-After all players currently connected to the same room pressed the "Ready" button, all of them are teleported inside the map, where they can start collecting keys, discover secret rooms and collect useful objects to win the game. Specifically, some areas of the labyrinth are accessible only after pressing a particular button, interacting with a specific lever or by unlocking a door using the right key. In these areas, the player can find the so called "helpers", objects that assist the player in game. Those implemented are special goggles that allow to temporarily see through walls, discovering secret areas or ghost current position, and particual energy spheres needed to charge the lantern.
+After all players currently connected to the same room pressed the "Ready" button, all of them are teleported inside the map, where they can start collecting keys, discover secret rooms and collect useful objects to win the game. Specifically, some areas of the labyrinth are accessible only after pressing a particular button, interacting with a specific lever or by unlocking a door using the right key. In these areas, the player can find the so called "helpers", objects that assist the player in game. Those implemented are special goggles that allow to temporarily see through walls, discovering secret areas or ghost current position, and particular energy spheres needed to charge the lantern.
 
 The goal of the game is to team up and escape the maze, but the ghost can, while roaming across the map, go through walls and start chasing a player. When chasing, the ghost will no longer go through walls (with the exception of doors) and the only way for a player not to lose the game is by stunning the monster using its lantern with a still active battery.
 
