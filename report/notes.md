@@ -1,7 +1,7 @@
 = WIP
   - \
   == Ap
- - torch charge logic, with batteries placed randomly in the map \
+ - lantern charge logic, with batteries placed randomly in the map \
  == Teo
  - Analyzing and adapting networking (room creation/join)
  - UI development (create/join room panel, option panel, in-game UI (?))
@@ -24,7 +24,7 @@
  - Simple crouch system (To be tested)\
  = Ideas\
  == Player
- - shake torch to recharge a bit before running out
+ - shake lantern to recharge a bit before running out
  - Flash tech to stun the monster
  == Lobby\
  - the monster walk around you, waiting to play (invisible walls block any interaction between players and the monster)

@@ -32,6 +32,46 @@
 
 #figure(
   kind: image,
+  caption: [GetSpawnPoint - returns the position and rotation of a random point where to spawn a player according its UUID],
+  text()[
+    ```cs
+    private (Vector3 position, Quaternion rotation) GetSpawnPoint(
+      bool _isGameSpwanPoint
+    ) {
+        RoomClient roomClient = NetworkReferenceManager.Instance.RoomClient;
+        Transform centerPoint = _isGameSpwanPoint ?
+          ameSpawnPointCenter : roomLobbySpawnPointCenter;
+        Quaternion rotation = centerPoint.rotation;
+
+        int hash = roomClient.Me.uuid.GetHashCode();
+        float angle = (hash & 0x7FFFFFFF) % 360 * Mathf.Deg2Rad;
+        Vector3 candidatePosition = centerPoint.position +
+          new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * spawnPointRadius;
+
+        // Nudge if too close to an already-assigned point
+        foreach (IPeer peer in roomClient.Peers) {
+            int otherHash = peer.uuid.GetHashCode();
+            float otherAngle = (otherHash & 0x7FFFFFFF) % 360 * Mathf.Deg2Rad;
+            Vector3 otherPosition = centerPoint.position +
+              new Vector3(Mathf.Cos(otherAngle), 0, Mathf.Sin(otherAngle)) *
+              spawnPointRadius;
+
+            if (Vector3.Distance(candidatePosition, otherPosition) < 1f) {
+                // Nudge 45 degrees away
+                angle += 45 * Mathf.Deg2Rad;
+            }
+            candidatePosition = centerPoint.position +
+              new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * spawnPointRadius;
+        }
+
+        return (candidatePosition, rotation);
+    }
+    ```
+  ],
+)<getspawnpoint>
+
+#figure(
+  kind: image,
   caption: [ProcessMessage - function responsible for managing the position of shared objects],
   text()[
     ```cs
@@ -67,8 +107,8 @@
   caption: [HandleSpectatorChange - function activated when the spectator mode manager requests spectator mode activation],
   text()[
     ```cs
-    private IEnumerator HandleSpectatorChange(string _receivedPlayerUUID) {
-        if (NetworkReferenceManager.Instance.RoomClient.Me.uuid == _receivedPlayerUUID) {
+    private IEnumerator HandleSpectatorChange(string _playerUUID) {
+        if (NetworkReferenceManager.Instance.RoomClient.Me.uuid == _playerUUID) {
             // If a player lost play the lost sound. Since this function can be called
             // both when spectator mode has to be activated (enable = false -> true)
             // and deactivated (enable = true -> false), the sound has to play only
@@ -80,9 +120,9 @@
         }
 
         if (
-            _receivedPlayerUUID == playerUUID ||
+            _playerUUID == playerUUID ||
             (playerUUID == "Local Avatar" &&
-            _receivedPlayerUUID == NetworkReferenceManager.Instance.RoomClient.Me.uuid)
+            _playerUUID == NetworkReferenceManager.Instance.RoomClient.Me.uuid)
         ) {
             UpdateVisibility();
         }

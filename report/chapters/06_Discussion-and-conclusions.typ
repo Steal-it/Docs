@@ -8,9 +8,9 @@ Discuss the results from your evaluation sessions, focusing on the following are
 State the conclusions you can draw from your evaluation sessions.
 */
 
-The project allowed all members of the group to deepen their personal knowledge of Unity and to discover an interesting framework that covers the major aspects of network connectivity: Ubiq.
+The project allowed all members of the group to deepen their personal knowledge of Unity and to discover an interesting framework that covers the major aspects of network connectivity, Ubiq.
 
-In particular, the project allowed the team to better understand working approaches when talking about collaborative development of a Unity project using version control systems like Git, a characteristic which is fundamental to learn since, given the internal structure of Unity's project files regarding scene and prefab, teaming up could be a difficult task, especially in case of merge conflicts. The team learned that the best approach is developing each component separately and as a prefab and possibly testing such components in a different scene that should be deleted before merging secondary branches into the main branch of development. A clear separation of tasks also helps with development.
+In particular, the project allowed the team to better understand working approaches when talking about collaborative development of a Unity project using version control systems like Git, a characteristic which is fundamental to learn since, given the internal structure of Unity's project files regarding scenes and prefabs, teaming up could be a difficult task, especially in case of merge conflicts. The team learned that the best approach is developing each component separately as a prefab, and possibly testing such components in a different scene that should be deleted before merging secondary branches into the main branch of development. A clear separation of tasks also helps with development.
 
 Unfortunately, it is a common opinion that while Ubiq certainly represents an alternative to the native Unity multiplayer system, it is still to be considered under development: due to lack of documentation or implemented functionality, major components like matchmaking and message types exchange had to be implemented manually.
 

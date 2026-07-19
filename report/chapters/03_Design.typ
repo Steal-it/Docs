@@ -22,7 +22,7 @@ As for the main game, the main components of our architecture are the following:
 
   - *Level Manager* - the component responsible for teleporting players from the connection and settings room to the room lobby first, and from the room lobby to the main map after;
 
-  - *Local Lobby* and *Room Lobby* - the first contains the starting point of all players. Here players can choose in what hand to keep the torch and if they want to create a new room or join an existing one. The second prefab is the actual room lobby, where people can select to return to the first room or notify the others that they are ready to start the game;
+  - *Local Lobby* and *Room Lobby* - the first contains the starting point of all players. Here players can choose in what hand to keep the lantern and if they want to create a new room or join an existing one. The second prefab is the actual room lobby, where people can select to return to the first room or notify the others that they are ready to start the game;
 
   - *XR Origin (XR Rig)* - as the name says, it is the rig for the player. It has been modified to only allow specific types of interactions. Additionally, the component adds a vignette to reduce sickness caused by movement, and implements the block vision layer to signal the player that has moved its head inside an object, and the Red Screen Of Death (RSOD) that appears upon being killed by the monster. Lastly, it also allows the see-through effect of the goggles;
 

@@ -24,7 +24,7 @@ While all members contributed in an equal manner to level and game design choice
     [*#authors.ap.name #authors.ap.surname (#authors.ap.stid)*],
     [
       - Initial RIG changes
-      - Initial torch design and usage logic development
+      - Initial lantern design and usage logic development
       - Initial battery design and usage logic development
       - Map customization management on scene to create various levels using the same map
       - Game over management
@@ -48,7 +48,7 @@ While all members contributed in an equal manner to level and game design choice
         - Levers (angular and linear)
         - Ladder
         - Goggles
-        - Final torch and battery design
+        - Final lantern and battery design
         - Doors, keys and locks
       - Creation of the final map
       - Refactoring of avatar and RIG system for hand change management

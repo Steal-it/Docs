@@ -21,6 +21,8 @@ With the initial process finished, the user can signal other users when it is re
 
 == Avatar spawning
 
+In the room lobby and during game loading, all players spawn in the same spot. In order to avoid compenetrations among them, namely two peers are placed in the same point, a custom algorithm is adopted: players are randomly placed along the perimeter of a circle, according to their UUID. As reported in @getspawnpoint, the UUID gets hashed and, using trigonometry, an unique point is found.
+
 == Map Configuration
 
 In the context of a demo application, the lobbies and the actual game live in the same scene, avoiding issues that derive from a scene switch. For this reason, since the map remains the same in each gameplay, we implemented different configurations not to let the players memorize the obstacles and targets. In each `MapConfiguration`, the position and rotation of the following assets are specified.
