@@ -1,3 +1,4 @@
+#set heading(numbering: none)
 #import "../../lib/common.typ": authors
 
 = Group Contribution Statement
@@ -27,6 +28,7 @@ While all members contributed in equal manner to level and game design choices, 
       - Initial battery design and usage logic development
       - Map customization management on scene to create various levels using the same map
       - Game end management
+      - Contribution to final map developing
       - Monster:
         - Monster design
         - Monster logic (wander, chase, stun)
@@ -38,6 +40,7 @@ While all members contributed in equal manner to level and game design choices, 
     [*#authors.ajsm.name #authors.ajsm.surname (#authors.ajsm.stid)*],
     [
       - Player vision blocker when intersection with objects occur
+      - Final map design and graphic improvements
       - Complete design and logic development of interactable objects
         - Buttons (classic and with counter)
         - Levers (angular and linear)
@@ -50,6 +53,7 @@ While all members contributed in equal manner to level and game design choices, 
       - Goggles transparent vision
       - Monster:
         - Help with stun logic
+        - RIG
       - Networking:
         - Hand change selection logic and synchronization
 
@@ -66,7 +70,7 @@ While all members contributed in equal manner to level and game design choices, 
         - Game "Ready" system (start the game only when all people in the room are ready, including ready counter recovery upon room join)
         - Level managing (initial study for avatar transposition when joining a level or a different room)
         - Spectator mode activation/deactivation
-        - Increased reliability of avatar movement/animation interaction
+        - Increased reliability of avatar movement/animation interaction and transmission
     ],
   )
 )

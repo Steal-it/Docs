@@ -8,6 +8,8 @@ Present your system design in detail by addressing the following:
 • Did you modify or extend any Ubiq components? If so, describe your modifications.
 */
 
+== General information
+
 Regarding the design of Steal It, a key assumption of the system is the underling network infrastructure: Ubiq utilize, except for the room discovery, an almost server-free infrastructure, infrastructure that is considered reliable by our project. As seen during the lectures, an unreliable infrastructure that brings latency and inconsistent framerate can easily break the immersion.
 
 In order to validate the original assumption, the game needs to be played by at least two players at the same time.
@@ -38,9 +40,9 @@ In general, no further libraries except for Ubiq and Unity native libraries have
 Describe the user experience with your system. Treat this section as a user manual: explain the system from the user’s perspective and guide readers through typical usage scenarios.
 */
 
-Upon opening the application, players are automatically positioned in the Local Lobby: here they cannot move, but they are presented with two main sections. The first one is a panel present on their left describing some of the main aspect of the game, including but not limited to core mechanics.
+/*Upon opening the application, players are automatically positioned in the Local Lobby: here they cannot move, but they are presented with two main sections. The first one is a panel present on their left describing some of the main aspect of the game, including but not limited to core mechanics.*/
 
-/*At the center player find the main menu and the hand settings menu: the first one allows players to create a new room or join an existing one from a panel that will open on their right if such option is chosen. In order to limit the number of necessary interaction required by the player, all room are public and freely accessible.*/
+At the center player find the main menu and the hand settings menu: the first one allows players to create a new room or join an existing one from a panel that will open on their right if such option is chosen. In order to limit the number of necessary interaction required by the player, all room are public and freely accessible.
 
 At the center player find the main menu that allows players to create a new room or join an existing one from a panel that will open on their right if such option is chosen.
 

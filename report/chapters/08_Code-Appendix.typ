@@ -60,16 +60,16 @@
   caption: [HandleSpectatorChange - function activated when the spectator mode manager reuqest spectator mode activation],
   text()[
     ```cs
-    private IEnumerator HandleSpectatorChange(string receivedPlayerUUID) {
-        if (playerUUID == "Local Avatar" && !enable) {
-            //If a player lost play the lost sound. Since this function can be called both when spectator mode is to be activated (enable = false -> true) and deactivated (enable = true -> false), the sound has to play only when the spectator mode is being activated (enable = false -> true)
+    private IEnumerator HandleSpectatorChange(string _receivedPlayerUUID) {
+        if (NetworkReferenceManager.Instance.RoomClient.Me.uuid == _receivedPlayerUUID) {
+            // If a player lost play the lost sound. Since this function can be called both when spectator mode is to be activated (enable = false -> true) and deactivated (enable = true -> false), the sound has to play only when the spectator mode is being activated (enable = false -> true)
 
             lostAudioSource.Play();
 
             yield return new WaitUntil(() => !lostAudioSource.isPlaying);
         }
 
-        if (receivedPlayerUUID == playerUUID || (playerUUID == "Local Avatar" && receivedPlayerUUID == NetworkReferenceManager.Instance.RoomClient.Me.uuid)) {
+        if (_receivedPlayerUUID == playerUUID || (playerUUID == "Local Avatar" && _receivedPlayerUUID == NetworkReferenceManager.Instance.RoomClient.Me.uuid)) {
             UpdateVisibility();
         }
     }

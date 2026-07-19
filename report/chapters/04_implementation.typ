@@ -41,6 +41,10 @@ When all players are ready to play, a random configuration is selected and loade
 
 === Out Of Bounds (OOB) management
 
+=== Red Screen Of Death (RSOD)
+
+The red screen of death is a visual component that allows the player to remember that it is unfortunately no longer actively participating in the game. The screen is a simple red overlay that is placed over the native camera view along with an appropriate vignette to mitigate sickness during movement. For additional information about the spectator mode see @sm.
+
 == Object interaction and synchronization
 
 Every interactable object present in the Interactables object is equipped with two scripts `NetworkInteractable` and `NetworkMovement`. The first one detects when the object is interacted with and set the second script to start sending messages containing information about the position of the object. When transmitting, two variables are set by the sender and all receiving party, these being `AmIOwner` and `AmISender`. When the transmission start, both variables are set at true in the sender and false in the receiving party (that being the replica of the same object in the other players application instance). When the object is owned by another party, this means that object is currently being interacted by another party and others should not interfere: therefore, the `XRBaseInteractable` is deactivated in the receiving parties. When released, two situation can happen:
@@ -50,7 +54,7 @@ The handling function has been reported in @processmessage.
 
 Similarly to the situation just described, it is important to also dedicate a few words regarding the animations and particles: appropriate scripts have been created to send specific messages across the Ubiq network to reproduce audio, effects and other elements in a synchronized manner.
 
-== Spectator mode
+== Spectator mode <sm>
 
 When a player die because of the ghost, it enters a special mode called "Spectator Mode". This game modality disable the ability of the player to interact with interactable objects and makes disable the avatar in both the local and all remotes instances of the game. Collision are also disabled, therefore, the player is free to roam all the map, including out of bounds areas since the collision detection has been disabled as well.
 
