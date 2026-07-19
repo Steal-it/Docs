@@ -3,7 +3,7 @@
 
 #figure(
   kind: image,
-  caption: [OnJoinedRoomHandler - function responsible of recovering the ready counter upon joining a room],
+  caption: [OnJoinedRoomHandler - function responsible for recovering the ready counter upon joining a room],
   text()[
     ```cs
     private async void OnJoinedRoomHandler(IRoom _room) {
@@ -32,7 +32,7 @@
 
 #figure(
   kind: image,
-  caption: [ProcessMessage - function responsible of managing position of shared objects],
+  caption: [ProcessMessage - function responsible for managing the position of shared objects],
   text()[
     ```cs
      public override void ProcessMessage(ReferenceCountedSceneGraphMessage _message) {
@@ -64,7 +64,7 @@
 
 #figure(
   kind: image,
-  caption: [HandleSpectatorChange - function activated when the spectator mode manager reuqest spectator mode activation],
+  caption: [HandleSpectatorChange - function activated when the spectator mode manager requests spectator mode activation],
   text()[
     ```cs
     private IEnumerator HandleSpectatorChange(string _receivedPlayerUUID) {

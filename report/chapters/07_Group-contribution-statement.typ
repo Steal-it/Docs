@@ -6,7 +6,7 @@
 /*
 Describe each team member’s specific contributions to the project.
 */
-While all members contributed in equal manner to level and game design choices, every member gave its unique contributions on the project as described in the following table.
+While all members contributed in an equal manner to level and game design choices, every member gave its unique contributions on the project as described in the following table.
 
 #figure(
   caption: "Group contributions",
