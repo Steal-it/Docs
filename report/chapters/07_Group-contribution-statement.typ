@@ -62,6 +62,7 @@ While all members contributed in an equal manner to level and game design choice
       - Initial UI interface for game join menu
       - Hand selection UI interface
       - Creation of testing map
+      - Improvements on final map
       - Spectator mode Red Screen Of Death
       - Networking
         - Interactable object management and synchronization between players (position sending/receiving, owner/sender system)
