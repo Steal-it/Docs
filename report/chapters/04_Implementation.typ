@@ -37,7 +37,19 @@ When all players are ready to play, a random configuration is selected and loade
 
 == RIG optimizations and possible interactions
 
+The RIG has been modified to delete the jump and the teleport since those two features are not used in our game, as well as the gaze interactor. Additionally, the default models for the controllers have been removed as well. Further optimizations have been introduced for the head collider: lowering the head will lower the head collider as well.
+
+Finally, the hand logic has also been rewritten to allow the usage of lanterns and a socket has been added to the head to allow easy insertion of the goggles.
+
+=== See-through
+
+The see-through object introduces a special canvas that allows goggles to work properly. Specifically, when the user inserts the goggles and decides to activate them, this special canvas is activated and the player can see through walls.
+
 === Out Of Bounds (OOB) management
+
+The OOB manages player intersection with objects, blocking the player from seeing through walls and potentially cheating the game. A special script checks at every frame the position of the player's head and whether it is currently intersecting with something. In case of a positive answer, the script obtains the distance between the player's head and the intersection point: the further against the obstacle the player goes, the more black the screen will become.
+
+Upon reaching a certain threshold, fixed at 0.05, the script saves the intersection point and calculates the normal of the surface and saves it, then it proceeds to calculate the vector between the intersection point and the player's head. Finally, the vector is used to calculate the dot product with the normal and if such a product is higher than 0, this means the player is going out of the obstacle, therefore the canvas is gradually removed.
 
 === Red Screen Of Death (RSOD)
 
