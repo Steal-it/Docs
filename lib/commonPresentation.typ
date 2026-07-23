@@ -35,8 +35,8 @@
         }
       },
       inset: 0.4em,
-      [*Team members*],[#authors.ajsm.name #authors.ajsm.surname (#authors.ajsm.stid)],
-      [],[#authors.ap.name #authors.ap.surname (#authors.ap.stid)],
+      [*Team members*],[#authors.ap.name #authors.ap.surname (#authors.ap.stid)],
+      [],[#authors.ajsm.name #authors.ajsm.surname (#authors.ajsm.stid)],
       [], [#authors.mt.name #authors.mt.surname (#authors.mt.stid)],
     )
   ]
@@ -50,6 +50,7 @@
 
 #let slide(title, body) = {
   show link: set text(fill: linkColor)
+
   pagebreak()
   set page(
     paper: "presentation-16-9",
